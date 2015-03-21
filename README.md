@@ -1,6 +1,8 @@
 merv
 ====
 
+[![Build Status](https://travis-ci.org/mfs/merv.svg)](https://travis-ci.org/mfs/merv)
+
 ## Description
 
 A simple utility for helping to solve crosswords. At the moment it is basically
