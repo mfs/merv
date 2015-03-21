@@ -50,12 +50,10 @@ fn main() {
 
     let buf = BufReader::new(&file);
 
-    let t = args[1].clone();
-
     for line in buf.lines() {
         let s = line.unwrap();
 
-        if pmatch(&t, &s) {
+        if pmatch(&args[1], &s) {
             println!("{}", s);
         }
     }
