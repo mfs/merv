@@ -16,8 +16,13 @@ list. [Puzzlers' League][0] has links to suitable lists.
 
 Usage is simple. Pass the word you are looking for with blanks replaced with '.'
 
-    $ merv .x..p.e
+    $ merv .x..p.e # list matches
     example
     exciple
+    $ merv listen # list anagrams
+    enlist
+    listen
+    silent
+    tinsel
 
 [0]: http://www.puzzlers.org/dokuwiki/doku.php?id=solving:wordlists:about:start 
