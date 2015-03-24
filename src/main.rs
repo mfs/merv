@@ -34,6 +34,20 @@ fn pmatch(pattern: &str, target: &str) -> bool {
     true
 }
 
+fn do_match(br: BufReader<&File>, pattern: &str) {
+    for line in br.lines() {
+        let s = line.unwrap();
+
+        if pmatch(pattern, &s) {
+            println!("{}", s);
+        }
+    }
+}
+
+fn do_anagram() {
+    println!("Not yet implemented.");
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
@@ -50,11 +64,9 @@ fn main() {
 
     let buf = BufReader::new(&file);
 
-    for line in buf.lines() {
-        let s = line.unwrap();
-
-        if pmatch(&args[1], &s) {
-            println!("{}", s);
-        }
+    if args[1].contains('.') {
+        do_match(buf, &args[1]);
+    } else {
+        do_anagram();
     }
 }
