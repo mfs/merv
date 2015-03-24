@@ -15,6 +15,7 @@ use std::env;
 use std::fs::File;
 use std::io::BufRead;
 use std::io::BufReader;
+use std::ascii::AsciiExt;
 
 // matches a pattern such as 'e..mp..'
 // against a string such as  'example'
@@ -44,8 +45,23 @@ fn do_match(br: BufReader<&File>, pattern: &str) {
     }
 }
 
-fn do_anagram() {
-    println!("Not yet implemented.");
+fn do_anagram(br: BufReader<&File>, word: &str) {
+
+    let mut word_chars: Vec<char> = word.to_ascii_lowercase().chars().collect();
+    word_chars.sort();
+
+    for line in br.lines() {
+        let l = line.unwrap();
+        if l.len() != word.len() {
+            continue;
+        }
+
+        let mut line_chars: Vec<char> = l.to_ascii_lowercase().chars().collect();
+        line_chars.sort();
+        if word_chars == line_chars {
+            println!("{}", l);
+        }
+    }
 }
 
 fn main() {
@@ -67,6 +83,6 @@ fn main() {
     if args[1].contains('.') {
         do_match(buf, &args[1]);
     } else {
-        do_anagram();
+        do_anagram(buf, &args[1]);
     }
 }
